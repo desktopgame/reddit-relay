@@ -8,7 +8,7 @@
   {% if post.body_text %}<meta name="description" content="{{ post.body_text[:300] }}">{% endif %}
   <meta property="og:type" content="article">
   <meta property="og:title" content="{{ post.title }}">
-  <meta property="og:url" content="{{ post.original_url }}">
+  <meta property="og:url" content="{{ relay_url }}">
   {% if post.thumbnail_url %}<meta property="og:image" content="{{ post.thumbnail_url }}">{% endif %}
 </head>
 <body>

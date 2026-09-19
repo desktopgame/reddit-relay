@@ -29,5 +29,8 @@ def get_post(post_id: str, request: Request) -> Response:
     return templates.TemplateResponse(
         request=request,
         name="post.html",
-        context={"post": post},
+        context={
+            "post": post,
+            "relay_url": request.app.state.settings.post_url(post_id),
+        },
     )
