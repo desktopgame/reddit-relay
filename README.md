@@ -52,6 +52,8 @@ Karakeep と同じホスト / Docker ネットワークから到達できる `RE
 | `REDDIT_MAX_POSTS_PER_SUBREDDIT` | `50` | feed に出す最大件数 |
 | `REDDIT_USER_AGENT` | `reddit-relay/0.1 ...` | Reddit への UA |
 | `REDDIT_REQUEST_TIMEOUT_SECONDS` | `20` | HTTP タイムアウト |
+| `REDDIT_MAX_RETRIES` | `2` | 429/503 時のリトライ回数 |
+| `REDDIT_RETRY_DELAY_SECONDS` | `60` | リトライ前の待機秒数 |
 | `REDDIT_RELAY_LOG_LEVEL` | `INFO` | ログレベル |
 
 ## 設計上の要点

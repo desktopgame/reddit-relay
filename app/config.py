@@ -61,6 +61,8 @@ class Settings:
     max_posts_per_subreddit: int
     user_agent: str
     request_timeout_seconds: float
+    max_retries: int
+    retry_delay_seconds: float
     log_level: str
 
     def subreddit_map(self) -> dict[str, str]:
@@ -94,5 +96,7 @@ def get_settings() -> Settings:
         max_posts_per_subreddit=max(1, _get_int("REDDIT_MAX_POSTS_PER_SUBREDDIT", 50)),
         user_agent=_get_str("REDDIT_USER_AGENT", "reddit-relay/0.1 (personal Karakeep relay)"),
         request_timeout_seconds=_get_float("REDDIT_REQUEST_TIMEOUT_SECONDS", 20.0),
+        max_retries=max(0, _get_int("REDDIT_MAX_RETRIES", 2)),
+        retry_delay_seconds=max(0.0, _get_float("REDDIT_RETRY_DELAY_SECONDS", 60.0)),
         log_level=_get_str("REDDIT_RELAY_LOG_LEVEL", "INFO").upper(),
     )
