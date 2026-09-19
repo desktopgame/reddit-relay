@@ -62,7 +62,29 @@ Karakeep と同じホスト / Docker ネットワークから到達できる `RE
 - 取得失敗時もキャッシュは残り、feed / post は配信を継続する。
 - feed の `guid` は `reddit:t3_<id>` で安定。link は relay の HTML を指す。
 - Reddit 由来 HTML は `nh3` でサニタイズし、相対リンクは reddit.com 絶対 URL に変換する。
-- canonical は Karakeep が bookmark URL を上書きして Reddit を再クロールする可能性があるため付けていない。
+- canonical は Karakeep が bookmark URL を上書きして Reddit を再クロールする可能性があるため付けていない。`og:url` も relay 自身の URL にしてあり、reddit.com を指さない。
+
+## Karakeep 側の必須設定
+
+Karakeep は既定で **SSRF 保護**により、内部アドレス（private / loopback）へ解決されるホストへの worker リクエストを拒否する。relay を `host.docker.internal` で参照する場合、`192.168.65.254` 等に解決されブロックされるため、Karakeep 側で許可が必要。
+
+Karakeep の `docker-compose.yml`（`web` / worker サービス）の `environment:` に追加:
+
+```yaml
+      CRAWLER_ALLOWED_INTERNAL_HOSTNAMES: host.docker.internal
+```
+
+反映:
+
+```powershell
+docker compose up -d
+```
+
+これを忘れると feed 取得と Crawler の両方が次のように失敗する:
+
+```text
+Refusing to access disallowed resolved address 192.168.65.254 for host host.docker.internal
+```
 
 ## Karakeep 接続確認
 
