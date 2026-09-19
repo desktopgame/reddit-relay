@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>r/{{ subreddit }} (reddit-relay)</title>
+    <link>{{ feed_url }}</link>
+    <atom:link href="{{ feed_url }}" rel="self" type="application/rss+xml" />
+    <description>Reddit posts relayed through reddit-relay for Karakeep</description>
+    <lastBuildDate>{{ last_build }}</lastBuildDate>
+{% for post in posts %}
+    <item>
+      <title>{{ post.title }}</title>
+      <link>{{ base_url }}/post/{{ post.id }}</link>
+      <guid isPermaLink="false">{{ post.guid }}</guid>
+      <pubDate>{{ post.created_at | rfc822 }}</pubDate>
+{% if post.author %}      <author>u/{{ post.author }}</author>
+{% endif %}{% for category in post.categories %}      <category>{{ category }}</category>
+{% endfor %}    </item>
+{% endfor %}  </channel>
+</rss>

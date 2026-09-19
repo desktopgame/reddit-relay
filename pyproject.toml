@@ -1,0 +1,26 @@
+[project]
+name = "reddit-relay"
+version = "0.1.0"
+description = "Local read-only Reddit relay that serves RSS and static HTML for Karakeep"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115",
+    "uvicorn[standard]>=0.30",
+    "httpx>=0.27",
+    "jinja2>=3.1",
+    "nh3>=0.2",
+    "python-dotenv>=1.0",
+]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.6",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
