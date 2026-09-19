@@ -11,8 +11,6 @@ from app.reddit.source import RedditSource
 
 logger = logging.getLogger(__name__)
 
-STAGGER_SECONDS = 2.0
-
 
 class Refresher:
     def __init__(self, settings: Settings, db: Database, source: RedditSource) -> None:
@@ -41,7 +39,7 @@ class Refresher:
         for index, subreddit in enumerate(subreddits):
             await self.refresh_subreddit(subreddit)
             if index < len(subreddits) - 1:
-                await asyncio.sleep(STAGGER_SECONDS)
+                await asyncio.sleep(self._settings.refresh_stagger_seconds)
 
     async def run_forever(self) -> None:
         interval = self._settings.refresh_interval_minutes * 60

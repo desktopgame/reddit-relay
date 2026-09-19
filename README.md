@@ -48,6 +48,7 @@ Karakeep と同じホスト / Docker ネットワークから到達できる `RE
 | `REDDIT_RELAY_DB` | `data/reddit-relay.db` | SQLite ファイル |
 | `REDDIT_SUBREDDITS` | `LocalLLaMA` | 取得対象 (カンマ区切り) |
 | `REDDIT_REFRESH_INTERVAL_MINUTES` | `60` | Reddit 取得間隔 |
+| `REDDIT_REFRESH_STAGGER_SECONDS` | `30` | subreddit 間の待機秒数（429 対策） |
 | `REDDIT_MAX_POSTS_PER_SUBREDDIT` | `50` | feed に出す最大件数 |
 | `REDDIT_USER_AGENT` | `reddit-relay/0.1 ...` | Reddit への UA |
 | `REDDIT_REQUEST_TIMEOUT_SECONDS` | `20` | HTTP タイムアウト |

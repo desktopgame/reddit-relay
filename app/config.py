@@ -57,6 +57,7 @@ class Settings:
     db_path: Path
     subreddits: tuple[str, ...]
     refresh_interval_minutes: int
+    refresh_stagger_seconds: float
     max_posts_per_subreddit: int
     user_agent: str
     request_timeout_seconds: float
@@ -89,6 +90,7 @@ def get_settings() -> Settings:
         db_path=db_path,
         subreddits=_parse_subreddits(_get_str("REDDIT_SUBREDDITS", "LocalLLaMA")),
         refresh_interval_minutes=max(1, _get_int("REDDIT_REFRESH_INTERVAL_MINUTES", 60)),
+        refresh_stagger_seconds=max(0.0, _get_float("REDDIT_REFRESH_STAGGER_SECONDS", 30.0)),
         max_posts_per_subreddit=max(1, _get_int("REDDIT_MAX_POSTS_PER_SUBREDDIT", 50)),
         user_agent=_get_str("REDDIT_USER_AGENT", "reddit-relay/0.1 (personal Karakeep relay)"),
         request_timeout_seconds=_get_float("REDDIT_REQUEST_TIMEOUT_SECONDS", 20.0),
