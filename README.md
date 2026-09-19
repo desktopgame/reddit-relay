@@ -21,8 +21,11 @@ reddit-relay
 uv sync
 Copy-Item .env.example .env
 # .env を編集して REDDIT_SUBREDDITS と REDDIT_RELAY_BASE_URL を設定
-uv run uvicorn app.main:app --host 127.0.0.1 --port 8080
+uv run python -m app
 ```
+
+`REDDIT_RELAY_HOST` / `REDDIT_RELAY_PORT` は `.env` から読み込まれる。
+CLI 引数で上書きしたい場合は `uv run uvicorn app.main:app --host ... --port ...` でも起動できる。
 
 Karakeep と同じホスト / Docker ネットワークから到達できる `REDDIT_RELAY_BASE_URL` を
 設定すること。Karakeep に登録する RSS は `{BASE_URL}/feed/{subreddit}`。
