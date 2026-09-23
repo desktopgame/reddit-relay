@@ -20,30 +20,27 @@
       {{ post.created_at.strftime("%Y-%m-%d") }}
     </p>
 
-    {% if post.body_html %}
     <div class="content">
-      {{ post.body_html | safe }}
-    </div>
-    {% endif %}
+      {% if post.body_html %}{{ post.body_html | safe }}{% endif %}
 
-    {% if post.external_url %}
-    <p>
-      <a href="{{ post.external_url }}">{{ post.external_url }}</a>
-    </p>
-    {% endif %}
-
-    {% if post.thumbnail_url %}
-    <p>
-      <img src="{{ post.thumbnail_url }}" alt="">
-    </p>
-    {% endif %}
-
-    <footer>
+      {% if post.external_url %}
       <p>
+        External link:
+        <a href="{{ post.external_url }}">{{ post.external_url }}</a>
+      </p>
+      {% endif %}
+
+      {% if post.thumbnail_url %}
+      <p>
+        <img src="{{ post.thumbnail_url }}" alt="">
+      </p>
+      {% endif %}
+
+      <p class="source">
         Original on Reddit:
         <a href="{{ post.original_url }}">{{ post.original_url }}</a>
       </p>
-    </footer>
+    </div>
   </article>
 </body>
 </html>
