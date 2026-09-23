@@ -38,9 +38,12 @@
     </p>
     {% endif %}
 
-    <p>
-      <a href="{{ post.original_url }}">Original on Reddit</a>
-    </p>
+    <footer>
+      <p>
+        Original on Reddit:
+        <a href="{{ post.original_url }}">{{ post.original_url }}</a>
+      </p>
+    </footer>
   </article>
 </body>
 </html>
